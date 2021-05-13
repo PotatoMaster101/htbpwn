@@ -1,0 +1,13 @@
+#!/bin/sh
+########################################################################################################################
+# Connects to HackTheBox vpn. The vpn file defaults to `/opt/htb/lab_PotatoMaster.ovpn`.
+#
+# Usage: /bin/sh htb [vpn file]
+########################################################################################################################
+
+[ ! -z "$1" ] && vpnfile="$1" || vpnfile='/opt/htb/lab_PotatoMaster.ovpn'
+[ ! -f "$vpnfile" ] && { echo "ERROR: VPN file not found: $vpnfile" 1>&2; exit 1; }
+[ "$(id -u)" -ne 0 ] && { echo 'ERROR: Must be run as root' 1>&2; exit 1; }
+command -v openvpn > /dev/null 2>&1 || { echo 'ERROR: Program not found: openvpn' 1>&2; exit 1; }
+
+openvpn "$vpnfile"

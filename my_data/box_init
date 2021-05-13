@@ -1,0 +1,17 @@
+#!/bin/sh
+########################################################################################################################
+# Run me to initialise config and scripts.
+########################################################################################################################
+
+temp='/tmp/init'
+rm -rf "$temp"
+
+# configs
+git clone https://github.com/PotatoMaster101/vimconf "$temp/vimconf" && cd "$temp/vimconf" && sh init.sh
+git clone https://github.com/PotatoMaster101/tmuxconf "$temp/tmuxconf" && cd "$temp/tmuxconf" && sh init.sh
+
+# scripts
+sudo curl https://raw.githubusercontent.com/PotatoMaster101/revsh/main/revsh.py -o /usr/local/bin/revsh
+
+# permissions
+sudo chmod 755 /usr/local/bin/revsh

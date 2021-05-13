@@ -1,0 +1,10 @@
+#!/bin/sh
+########################################################################################################################
+# Initialises pwnbox on startup.
+########################################################################################################################
+
+temp='/tmp/init'
+rm -rf "$temp"
+
+# dotfiles
+git clone https://github.com/PotatoMaster101/dotfiles "$temp/dotfiles" && cd "$temp/dotfiles" && sh init.sh
